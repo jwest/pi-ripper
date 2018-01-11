@@ -1,5 +1,6 @@
 #!/bin/bash
-/home/pi/ripper/logging.sh
+source /home/pi/ripper/logging.sh
+exec 3>>/home/pi/ripper.log
 
 log_info "START pi-ripper"
 
