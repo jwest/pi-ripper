@@ -22,5 +22,7 @@ do
     eject
 
     /home/pi/ripper/unmounter.sh
+
+    sudo shutdown now
   fi
 done
