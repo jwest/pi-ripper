@@ -36,7 +36,7 @@ do
     $WORKING_DIR/piripper_service.sh &
 
     log_info "RIPPING starting, output created in $WORKING_DIR/output.log"
-    $WORKING_DIR/rip.sh > RIPPING_LOG_FILE &>3
+    $WORKING_DIR/rip.sh
 
     log_info "SEND notify"
     $WORKING_DIR/notify.sh END "`cat $RIPPING_LOG_FILE | tr '\r' '\n'`"
@@ -49,6 +49,6 @@ do
     log_info "END pi-ripper"
 
     log_info "SHUTDOWN pi now"
-    sudo shutdown now
+#    sudo shutdown now
   fi
 done
