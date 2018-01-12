@@ -1,5 +1,7 @@
 #!/bin/bash
 
+MOUNT_DIR=/mnt/usb/
+
 while :
 do
 
@@ -10,7 +12,7 @@ do
     DRIVE_PATH="/dev/$DRIVE"
     echo $DRIVE_PATH
 
-    sudo mount $DRIVE_PATH /mnt/usb/
+    sudo mount $DRIVE_PATH $MOUNT_DIR
 
     break
   fi
