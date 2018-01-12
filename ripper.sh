@@ -15,7 +15,7 @@ do
 
   if [[ $CD -eq 0 ]]
     then
-    log_info "CD not inserted"
+    log_debug "CD not inserted"
     sleep 5
   else
     log_info "CD inserted"
