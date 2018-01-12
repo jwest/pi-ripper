@@ -35,7 +35,7 @@ do
     log_info "STARTING notifications for pi-ripper-service"
     $WORKING_DIR/piripper_service.sh &
 
-    log_info "RIPPING starting, output created in $WORKING_DIR/output.log"
+    log_info "RIPPING starting"
     $WORKING_DIR/rip.sh
 
     log_info "SEND notify"
