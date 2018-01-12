@@ -1,8 +1,17 @@
 #!/bin/bash
-WORKING_DIR=/home/pi/ripper
 OUTPUT_DIR=/mnt/usb
 PIRIPPER_LOG_FILE=/home/pi/ripper.log
 RIPPING_LOG_FILE=/mnt/usb/output.log
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+WORKING_DIR=$DIR
 
 source $WORKING_DIR/logging.sh
 exec 3>>$PIRIPPER_LOG_FILE
@@ -29,17 +38,12 @@ do
     $WORKING_DIR/mounter.sh
     sleep 2
 
-    log_info "SEND notify"
-    $WORKING_DIR/notify.sh START
-
     log_info "STARTING notifications for pi-ripper-service"
     $WORKING_DIR/piripper_service.sh &
 
     log_info "RIPPING starting"
     $WORKING_DIR/rip.sh
 
-    log_info "SEND notify"
-    $WORKING_DIR/notify.sh END "`cat $RIPPING_LOG_FILE | tr '\r' '\n'`"
     log_info "EJECT cd drive"
     eject
 

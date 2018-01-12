@@ -12,8 +12,21 @@
 ## License: Public domain; do as you wish
 ##
 
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+WORKING_DIR=$DIR
+
+source $WORKING_DIR/config.sh
+
 exec 3>&2 # logging stream (file descriptor 3) defaults to STDERR
-verbosity=5 # default to show warnings
+verbosity=$VERBOSITY_LVL
 silent_lvl=0
 crt_lvl=1
 err_lvl=2
