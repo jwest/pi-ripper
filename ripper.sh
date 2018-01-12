@@ -40,15 +40,13 @@ do
     log_info "RIPPING starting"
     $WORKING_DIR/rip.sh
 
-    log_info "EJECT cd drive"
-    eject
-
     log_info "MOUNT disk"
     $WORKING_DIR/mounter.sh
     sleep 2
 
     log_info "SANITIZE filenames and dir"
-    detox -r -v $TEMPORARY_OUTPUT_DIR
+    DETOX_OUTPUT="$(detox -r -v $TEMPORARY_OUTPUT_DIR)"
+    log_debug $DETOX_OUTPUT
 
     log_info "MOVE all to mounted disk"
     mv $TEMPORARY_OUTPUT_DIR/* $OUTPUT_DIR/
@@ -56,9 +54,12 @@ do
     log_info "UNMOUNT disk"
     $WORKING_DIR/unmounter.sh
 
+    log_info "EJECT cd drive"
+    eject
+
     log_info "END pi-ripper"
 
-#    log_info "SHUTDOWN pi now"
-#    sudo shutdown now
+    log_info "SHUTDOWN pi now"
+    sudo shutdown now
   fi
 done
