@@ -5,6 +5,8 @@
 ```bash
 # @TODO install many tools
 
+sudo apt-get install detox
+
 git clone https://github.com/jwest/pi-ripper.git /home/pi/pi-ripper
 ```
 

@@ -34,10 +34,6 @@ do
   else
     log_info "CD inserted"
 
-    log_info "MOUNT disk"
-    $WORKING_DIR/mounter.sh
-    sleep 2
-
     log_info "STARTING notifications for pi-ripper-service"
     $WORKING_DIR/piripper_service.sh &
 
@@ -47,12 +43,22 @@ do
     log_info "EJECT cd drive"
     eject
 
+    log_info "MOUNT disk"
+    $WORKING_DIR/mounter.sh
+    sleep 2
+
+    log_info "SANITIZE filenames and dir"
+    detox -r -v $TEMPORARY_OUTPUT_DIR
+
+    log_info "MOVE all to mounted disk"
+    mv $TEMPORARY_OUTPUT_DIR/* $OUTPUT_DIR/
+
     log_info "UNMOUNT disk"
     $WORKING_DIR/unmounter.sh
 
     log_info "END pi-ripper"
 
-    log_info "SHUTDOWN pi now"
+#    log_info "SHUTDOWN pi now"
 #    sudo shutdown now
   fi
 done
