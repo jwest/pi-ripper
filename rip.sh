@@ -20,5 +20,5 @@ rm $WHIPPER_LOG_FILE
 rm $WHIPPER_DEBUG_LOG_FILE
 
 log_debug 'start ripping'
-sudo WHIPPER_DEBUG=DEBUG WHIPPER_LOGFILE=$WHIPPER_LOG_FILE whipper cd rip --output-directory $OUTPUT_DIR --track-template '%r/%A - %d/%t' >> $WHIPPER_DEBUG_LOG_FILE
+sudo WHIPPER_DEBUG=DEBUG WHIPPER_LOGFILE=$WHIPPER_DEBUG_LOG_FILE whipper cd rip --output-directory $OUTPUT_DIR --track-template '%r/%A - %d/%t' >> $WHIPPER_LOG_FILE
 log_info "end ripping with status: $?"
