@@ -16,6 +16,9 @@ PIRIPPER_LOG_FILE=/home/pi/ripper.log
 #Logs from whipper ripping
 WHIPPER_LOG_FILE=/home/pi/ripper_whipper.log
 
+#Logs from whipper debug ripping
+WHIPPER_DEBUG_LOG_FILE=/home/pi/ripper_whipper_debug.log
+
 #Logs from rip process
 RIPPING_LOG_FILE=/home/pi/ripper_rip.log
 
