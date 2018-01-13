@@ -16,6 +16,9 @@ VERBOSITY_LVL=5
 #Logs from pi-ripper process
 PIRIPPER_LOG_FILE=/home/pi/ripper.log
 
+#Logs from pi ripper service notifier
+PIRIPPERSERVICE_LOG_FILE=/home/pi/ripper_service.log
+
 #Logs from whipper ripping
 WHIPPER_LOG_FILE=/home/pi/ripper_whipper.log
 
